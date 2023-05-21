@@ -1,0 +1,27 @@
+STEPS STEP-BY-STEP DESCRIPTION
+
+Step 1 | Ifthe length of K = B: set Ko = K. Go to step 4.
+
+Step 2 | If the length of K > B: hash K to obtain an L byte string, then append (B-L)
+Zeros to create a B-byte string Ko (i.e, Ko = H(K) || 00...00). Go to step 4.
+
+Step3 | If the length of K < B: append zeros to the end of K to create a B-byte string Ko
+(e.g., if K is 20 bytes in length and B = 64, then K will be appended with 44
+Zero bytes x'00').
+
+Step 4 | Exclusive-Or Ko with ipad to produce a B-byte string
+
+Step 5 | Append the stream of data ext to the string resulting from step 4:
+(Ko exclusive-or ipad) || text.
+
+Step 6 | Apply H to the stream generated in step 5: H((Ko exclusive-or ipad) || text).
+
+Step 7 | Exclusive-Or Ko with opad: Ko exclusive-or opad.
+
+Step | Append the result from step 6 to step 7:
+(Ko exclusive-or opad) || H((Ko exclusive-or ipad) || text).
+
+Step 9 | Apply H to the result from step 8:
+
+H((Ko exclusive-or opad )| H((Ko exclusive-or ipad) || text)).
+
